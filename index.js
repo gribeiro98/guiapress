@@ -6,7 +6,7 @@ const port = 8080;
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.send('Bem vindo!');
+    res.render('index');
 });
 
 app.listen(port, () => {
