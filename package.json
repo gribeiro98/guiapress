@@ -1,0 +1,19 @@
+{
+  "name": "guiapress",
+  "version": "1.0.0",
+  "description": "Sistema de gerenciamento de blog desenvolvido como aprendizado",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gribeiro98/guiapress.git"
+  },
+  "author": "Gabriel Ribeiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gribeiro98/guiapress/issues"
+  },
+  "homepage": "https://github.com/gribeiro98/guiapress#readme"
+}
