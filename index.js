@@ -5,6 +5,10 @@ const port = 8080;
 const bodyParser = require('body-parser');
 const connection = require('./database/database');
 
+// Controllers
+const categoriesController = require('./categories/CategoriesController');
+const articlesController = require('./articles/ArticlesController');
+
 // View Engine
 app.set('view engine', 'ejs');
 
@@ -22,6 +26,10 @@ connection.authenticate()
     }).catch((error) => {
         console.log('Erro ao se conectar com o banco de dados', error.message);
     });
+
+// Routes
+app.use('/', categoriesController);
+app.use('/', articlesController);
 
 app.get('/', (req, res) => {
     res.render('index');
