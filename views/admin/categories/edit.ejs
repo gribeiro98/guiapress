@@ -9,6 +9,7 @@
         </div>
         <div class="card-body">
             <form action="/categories/edit" method="post">
+                <input type="hidden" name="id" value="<%= category.id %>">
                 <input class="form-control" type="text" name="title" placeholder="Título da categoria" value="<%= category.title %>">
                 <br>
                 <button class="btn btn-success">Atualizar</button>
@@ -17,4 +18,4 @@
     </div>
 </div>
 
-<%- include('../../partials/footer') %>
+<%- include('../../partials/footer') %>''
