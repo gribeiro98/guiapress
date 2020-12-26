@@ -6,7 +6,7 @@ router.get('/admin/users', (req, res) => {
     res.send('Listagem de usuários');
 });
 
-router.get('/admin/users/create', (req, res) => {
+router.get('/admin/users/new', (req, res) => {
     res.render('admin/users/new');
 });
 
