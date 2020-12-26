@@ -96,8 +96,43 @@ router.post('/articles/update', (req, res) => {
     }).catch(err => {
         res.redirect('/admin/articles');
     });
-    
+});
+
+router.get('/articles/page/:page', (req, res) => {
+    var page = req.params.page;
+    var offset = 0;
+    var limit = 5
  
+    if(isNaN(page) || page == 1) {
+           offset = 0; 
+    } else {
+        offset = parseInt(page - 1) * limit;
+    }
+
+    Article.findAndCountAll({
+        limit: limit,
+        offset: offset,
+        order: [
+            ['id', 'desc']
+        ]
+    }).then(articles => {
+        var next = true;
+
+        if(offset + limit  >= articles.count) {
+            next = false;
+        }
+
+        var result = {
+            page: parseInt(page),
+            next: next,
+            articles: articles
+        }
+
+        Category.findAll().then(categories => {
+            res.render('page', {result: result, categories: categories});
+        });
+    });
+
 });
 
 module.exports = router;
