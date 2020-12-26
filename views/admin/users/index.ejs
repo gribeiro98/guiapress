@@ -1,0 +1,38 @@
+<%- include('../../partials/header') %>
+<%- include('../../partials/navbar') %>
+
+<div class="container">
+    <br>
+    <h2>Usuários</h2>
+    <a href="/admin/users/new" class="btn btn-success">Criar Usuário</a>
+    <hr>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(user => {  %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.email %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function confirmarDelecao(event, form) {
+        event.preventDefault();
+        var decision = confirm('Deseja deletar o usuário?');
+
+        if(decision){
+            form.submit();
+        }
+
+    }
+</script>
+<%- include('../../partials/footer') %>
