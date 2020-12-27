@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const port = 8080;
 const bodyParser = require('body-parser');
+const session = require('express-session');
 const connection = require('./database/database');
 
 // Controllers
@@ -17,6 +18,14 @@ const User = require('./users/User');
 
 // View Engine
 app.set('view engine', 'ejs');
+
+// Session
+app.use(session({
+    secret: "guiapress",
+    cookie:  {
+        maxAge: 30000
+    }
+}));
 
 // Statis Files
 app.use(express.static('public'));
@@ -37,6 +46,23 @@ connection.authenticate()
 app.use('/', categoriesController);
 app.use('/', articlesController);
 app.use('/', usersController);
+
+app.get('/session', (req, res) => {
+    req.session.treinamento = "Formação NodeJS";
+    req.session.ano = 2020,
+    req.session.user = {
+        name: "Gabriel",
+        age: 22
+    }
+    res.send('Sessão criada');
+});
+
+app.get('/leitura', (req, res) => {
+    res.json({
+        treinamento: req.session.ano,
+        user: req.session.user
+    });
+});
 
 app.get('/', (req, res) => {
     Article.findAll({
