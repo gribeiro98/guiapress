@@ -19,7 +19,7 @@ router.get('/admin/articles/new', adminAuth, (req, res) => {
     });
 });
 
-router.post('/articles/save', (req, res) => {
+router.post('/articles/save', adminAuth, (req, res) => {
     var title = req.body.title;
     var body = req.body.body;
     var category = req.body.category;
@@ -35,7 +35,7 @@ router.post('/articles/save', (req, res) => {
 
 });
 
-router.post('/articles/delete', (req, res) => {
+router.post('/articles/delete', adminAuth, (req, res) => {
     var id = req.body.id;
 
     if(id != undefined) {
@@ -57,7 +57,7 @@ router.post('/articles/delete', (req, res) => {
     }
 });
 
-router.get('/admin/articles/edit/:id', (req, res) => {
+router.get('/admin/articles/edit/:id', adminAuth, (req, res) => {
    var id = req.params.id;
    
    if(id != undefined) {
@@ -77,7 +77,7 @@ router.get('/admin/articles/edit/:id', (req, res) => {
    }
 });
 
-router.post('/articles/update', (req, res) => {
+router.post('/articles/update', adminAuth, (req, res) => {
     var id = req.body.id;
     var title = req.body.title;
     var body = req.body.body;
